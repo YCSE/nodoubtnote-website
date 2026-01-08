@@ -1,0 +1,88 @@
+/**
+ * 노답노트 - Webtoon Landing Page Scripts
+ * Minimal, performant interactions
+ */
+
+(function() {
+  'use strict';
+
+  // ─── Header Scroll State ───
+  const header = document.querySelector('.header');
+  let lastScrollY = 0;
+  let ticking = false;
+
+  function updateHeaderState() {
+    const scrollY = window.scrollY;
+
+    // Add 'scrolled' class when scrolled past threshold
+    if (scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      // Use requestAnimationFrame for smooth performance
+      window.requestAnimationFrame(updateHeaderState);
+      ticking = true;
+    }
+  }
+
+  // Initialize scroll listener
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Check initial state (in case page loads scrolled)
+  updateHeaderState();
+
+  // ─── Lazy Loading Enhancement ───
+  // Native lazy loading is used via HTML attributes
+  // This adds intersection observer for older browsers as fallback
+  if ('IntersectionObserver' in window) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          // Trigger load by ensuring src is processed
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '100px 0px', // Start loading 100px before viewport
+      threshold: 0.01
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+  }
+
+  // ─── Smooth Scroll for Anchor Links ───
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      // Skip placeholder links
+      if (href === '#' || href === '#ios' || href === '#android') {
+        return;
+      }
+
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+})();
