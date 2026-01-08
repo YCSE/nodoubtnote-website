@@ -16,3 +16,8 @@ firebase-debug.log
 # Local config
 .mcp.json
 *.local.md
+
+# Generated/temp files
+assets/Generated*
+*.md
+appicon.jpeg
