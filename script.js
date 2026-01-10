@@ -10,9 +10,11 @@
   const header = document.querySelector('.header');
   let lastScrollY = 0;
   let ticking = false;
+  const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
 
   function updateHeaderState() {
     const scrollY = window.scrollY;
+    const scrollDelta = scrollY - lastScrollY;
 
     // Add 'scrolled' class when scrolled past threshold
     if (scrollY > 10) {
@@ -21,7 +23,19 @@
       header.classList.remove('scrolled');
     }
 
-    lastScrollY = scrollY;
+    // Hide/show header based on scroll direction
+    // Hide when scrolling down (reading webtoon), show when scrolling up
+    if (Math.abs(scrollDelta) > scrollThreshold) {
+      if (scrollDelta > 0 && scrollY > 100) {
+        // Scrolling down - hide header
+        header.classList.add('header-hidden');
+      } else {
+        // Scrolling up - show header
+        header.classList.remove('header-hidden');
+      }
+      lastScrollY = scrollY;
+    }
+
     ticking = false;
   }
 

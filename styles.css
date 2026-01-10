@@ -157,6 +157,11 @@ body {
   height: 5px;
 }
 
+/* Hidden state - slide up out of view */
+.header.header-hidden {
+  transform: translateY(-100%);
+}
+
 .header-content {
   max-width: 1200px;
   height: 100%;
