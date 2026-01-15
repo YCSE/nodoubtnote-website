@@ -1066,6 +1066,53 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   MOBILE HEADER ENHANCEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Bolder accent bar on mobile for visual impact */
+  .header::after {
+    height: 5px;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary) 0%,
+      var(--color-primary-light) 30%,
+      var(--color-gold) 50%,
+      var(--color-primary-light) 70%,
+      var(--color-primary) 100%
+    );
+    background-size: 200% 100%;
+    animation: headerAccentMobile 4s ease-in-out infinite;
+  }
+
+  @keyframes headerAccentMobile {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Enhanced button hover states for mobile */
+  .btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Improve logo visibility on mobile */
+  .logo-icon {
+    box-shadow:
+      0 4px 16px rgba(255, 107, 53, 0.35),
+      0 0 0 3px rgba(255, 107, 53, 0.2);
+  }
+
+  /* Smoother header hide/show on mobile */
+  .header {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    RESPONSIVE DESIGN
    ═══════════════════════════════════════════════════════════════ */
 
@@ -1076,27 +1123,38 @@ body {
 
   .header-content {
     padding: 0 var(--space-md);
+    gap: var(--space-md);
   }
 
   .logo-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
   }
 
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  /* Mobile buttons - more prominent */
+  .download-buttons {
+    gap: 10px;
   }
 
   .btn {
-    padding: 12px 18px;
-    font-size: 0.9rem;
-    border-radius: 12px;
+    padding: 13px 20px;
+    font-size: 0.88rem;
+    border-radius: 14px;
+    min-width: 140px;
   }
 
   .btn-icon {
-    width: 20px;
-    height: 20px;
+    width: 21px;
+    height: 21px;
+  }
+
+  .btn-text {
+    font-size: 0.88rem;
   }
 
   .webtoon-container {
@@ -1170,32 +1228,84 @@ body {
   }
 }
 
+/* Medium-small screens (large phones in portrait) */
+@media (max-width: 600px) {
+  .webtoon-container {
+    padding-top: 72px; /* Match mobile header height */
+  }
+
+  /* Optimize button sizing for medium-small screens */
+  .btn {
+    padding: 12px 16px;
+    min-width: 120px;
+    font-size: 0.85rem;
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media (max-width: 480px) {
+  /* Update padding to match smaller header */
+  .webtoon-container {
+    padding-top: 64px; /* Match very small screen header height */
+  }
+  /* Tighter header for very small screens */
+  .header {
+    height: 64px;
+  }
+
+  .header-content {
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  /* Compact but recognizable logo */
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .logo-text {
+    font-size: 1.4rem;
+  }
+
+  /* Icon-only buttons with larger touch targets */
   .download-buttons {
-    gap: var(--space-sm);
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 15px;
+    border-radius: 14px;
+    min-width: unset;
+    width: 52px;
+    height: 52px;
   }
 
   .btn-text {
     display: none;
   }
 
-  .btn {
-    padding: 14px;
-    border-radius: 12px;
-  }
-
   .btn-icon {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 
-  .logo-text {
-    font-size: 1.35rem;
+  /* Slightly larger icons with better shadow for visibility */
+  .btn-ios,
+  .btn-android {
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 
-  .logo-icon {
-    width: 40px;
-    height: 40px;
+  .btn-ios:active,
+  .btn-android:active {
+    transform: scale(0.95);
   }
 
   .features-grid {
@@ -1229,6 +1339,55 @@ body {
 
   .cta-btn-store {
     font-size: 1.2rem;
+  }
+}
+
+/* Ultra-compact for very small screens (iPhone SE, etc.) */
+@media (max-width: 360px) {
+  .header {
+    height: 60px;
+  }
+
+  .header-content {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  /* Even tighter button spacing */
+  .download-buttons {
+    gap: 6px;
+  }
+
+  .btn {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border-radius: 13px;
+  }
+
+  .btn-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Adjust webtoon container */
+  .webtoon-container {
+    padding-top: 60px;
+  }
+
+  /* Slightly smaller accent bar but still visible */
+  .header::after {
+    height: 4px;
   }
 }
 
