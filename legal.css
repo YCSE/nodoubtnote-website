@@ -125,6 +125,10 @@
   margin-bottom: 8px;
 }
 
+.legal-section > ul > li:has(strong:first-child)::before {
+  top: 24px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .legal-container {
