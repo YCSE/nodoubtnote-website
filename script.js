@@ -84,7 +84,7 @@
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       // Skip placeholder links
-      if (href === '#' || href === '#ios' || href === '#android') {
+      if (href === '#') {
         return;
       }
 
