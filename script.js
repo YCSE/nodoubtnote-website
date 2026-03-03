@@ -6,6 +6,26 @@
 (function() {
   'use strict';
 
+  // ─── Ads Conversion: Track Store Button Clicks ───
+  const ADS_CONVERSION_SEND_TO = 'AW-17921161832/qxWZCIC4ovAbEOj0vOFC';
+
+  function trackAdsConversion(platform) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', 'conversion', {
+      send_to: ADS_CONVERSION_SEND_TO,
+      value: 1.0,
+      currency: 'KRW',
+      event_label: platform
+    });
+  }
+
+  document.querySelectorAll('a.btn-ios, a.btn-android, a.cta-btn-ios, a.cta-btn-android')
+    .forEach(function(a) {
+      var platform =
+        (a.classList.contains('btn-ios') || a.classList.contains('cta-btn-ios')) ? 'ios' : 'android';
+      a.addEventListener('click', function() { trackAdsConversion(platform); });
+    });
+
   // ─── Header Scroll State ───
   const header = document.querySelector('.header');
   let lastScrollY = 0;
