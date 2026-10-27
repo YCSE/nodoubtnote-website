@@ -11,15 +11,18 @@
   <meta name="theme-color" content="#FF6B35">
 
   <!-- Favicon -->
-  <link rel="icon" href="assets/appicon.webp" type="image/webp">
-  <link rel="apple-touch-icon" href="assets/appicon.webp">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Preconnect -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Stylesheets: root-relative because GitHub Pages serves this page at any missing path, e.g. /a/b -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <style>
     .error-container {
@@ -105,7 +108,7 @@
 </head>
 <body>
   <main class="error-container">
-    <img src="assets/appicon.webp" alt="노답노트" class="error-icon">
+    <img src="/assets/appicon.webp" alt="노답노트" class="error-icon">
     <div class="error-code">404</div>
     <h1 class="error-title">페이지를 찾을 수 없습니다</h1>
     <p class="error-message">

@@ -1,20 +1,11 @@
 # NoDoubtNote (노답노트) Robots.txt
-# AI 수학 튜터링 앱 프로모션 웹사이트
+# AI 수학 문제 풀이 앱 프로모션 웹사이트
+#
+# A crawler obeys only the most specific group that names it, so keep every
+# rule in this single "*" group. Separate Googlebot/Yeti(Naver)/Bingbot groups
+# would make those crawlers ignore the rules below.
 
 User-agent: *
-Allow: /
-Sitemap: https://nodoubtnote.com/sitemap.xml
-
-# Naver 크롤러 (Yeti)
-User-agent: Yeti
-Allow: /
-
-# Google 크롤러
-User-agent: Googlebot
-Allow: /
-
-# Bing 크롤러
-User-agent: Bingbot
 Allow: /
 
 # 개발/디버그 파일 차단
@@ -22,3 +13,5 @@ Disallow: /.mcp.json
 Disallow: /firebase-debug.log
 Disallow: /*.md$
 Disallow: /.DS_Store
+
+Sitemap: https://nodoubtnote.com/sitemap.xml

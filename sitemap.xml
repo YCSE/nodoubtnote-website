@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- 메인 페이지 (홈) -->
+  <!-- 메인 페이지 (홈): 웹툰 패널은 이미지 검색 노출용 -->
   <url>
     <loc>https://nodoubtnote.com/</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://nodoubtnote.com/assets/og-image.jpg</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/01-intro.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/02-grade8.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/03-dropout.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/05-police.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/06-delivery.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/07-awakening.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/08-self-study.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/09-first-solve.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/10-intense-study.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/11-grade1.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/12-university.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/13-message.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/14-exam-problem.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/15-nodoubtnote-dev.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/16-ai-analysis.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/17-all-students.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/18-personalization.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/19-gpt-comparison.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/20-curriculum.webp</image:loc></image:image>
+    <image:image><image:loc>https://nodoubtnote.com/assets/webtoon/21-closing.webp</image:loc></image:image>
   </url>
 
   <!-- 개인정보 처리방침 -->
   <url>
     <loc>https://nodoubtnote.com/privacy.html</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -21,7 +42,7 @@
   <!-- 이용약관 -->
   <url>
     <loc>https://nodoubtnote.com/terms.html</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
