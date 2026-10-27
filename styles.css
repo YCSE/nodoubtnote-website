@@ -68,6 +68,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Reserve scrollbar space so the QR modal's scroll lock doesn't shift the page */
+  scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -294,6 +296,27 @@ body {
 }
 
 .btn-android:active {
+  transform: translateY(-1px);
+}
+
+/* App Download Button - Device-Aware, Brand Orange */
+.btn-download {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  box-shadow:
+    0 4px 20px var(--color-primary-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-download:hover {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 40px var(--color-primary-intense),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-download:active {
   transform: translateY(-1px);
 }
 
@@ -908,34 +931,26 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* iOS Button - Deep Black */
-.cta-btn-ios {
-  background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+/* App Download Button - Bold Orange on Navy */
+.cta-btn-download {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 8px 32px var(--color-primary-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.cta-btn-ios:hover {
+.cta-btn-download:hover {
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
   box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 16px 48px var(--color-primary-intense),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-/* Android Button - Clean White */
-.cta-btn-android {
-  background: white;
-  color: var(--color-text);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-}
-
-.cta-btn-android:hover {
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.3),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+/* Keep "iOS" cased correctly */
+.cta-btn-download .cta-btn-label {
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1235,13 +1250,13 @@ body {
   }
 
   /* Optimize button sizing for medium-small screens */
-  .btn {
-    padding: 12px 16px;
-    min-width: 120px;
-    font-size: 0.85rem;
+  .download-buttons .btn {
+    padding: 12px 18px;
+    min-width: 0;
+    font-size: 0.9rem;
   }
 
-  .btn-icon {
+  .download-buttons .btn-icon {
     width: 20px;
     height: 20px;
   }
@@ -1273,38 +1288,21 @@ body {
     font-size: 1.4rem;
   }
 
-  /* Icon-only buttons with larger touch targets */
-  .download-buttons {
+  /* Single download button keeps its label, with a 48px+ touch target */
+  .download-buttons .btn {
     gap: 8px;
-  }
-
-  .btn {
-    padding: 15px;
+    padding: 0 16px;
+    height: 48px;
     border-radius: 14px;
-    min-width: unset;
-    width: 52px;
-    height: 52px;
+    font-size: 0.875rem;
   }
 
-  .btn-text {
-    display: none;
+  .download-buttons .btn-icon {
+    width: 20px;
+    height: 20px;
   }
 
-  .btn-icon {
-    width: 26px;
-    height: 26px;
-  }
-
-  /* Slightly larger icons with better shadow for visibility */
-  .btn-ios,
-  .btn-android {
-    box-shadow:
-      0 6px 24px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  }
-
-  .btn-ios:active,
-  .btn-android:active {
+  .download-buttons .btn:active {
     transform: scale(0.95);
   }
 
@@ -1363,21 +1361,18 @@ body {
     font-size: 1.25rem;
   }
 
-  /* Even tighter button spacing */
-  .download-buttons {
+  /* Tighter button for the narrowest phones */
+  .download-buttons .btn {
     gap: 6px;
-  }
-
-  .btn {
-    width: 48px;
-    height: 48px;
-    padding: 12px;
+    padding: 0 12px;
+    height: 44px;
     border-radius: 13px;
+    font-size: 0.8125rem;
   }
 
-  .btn-icon {
-    width: 24px;
-    height: 24px;
+  .download-buttons .btn-icon {
+    width: 18px;
+    height: 18px;
   }
 
   /* Adjust webtoon container */
@@ -1392,12 +1387,159 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   QR MODAL - Desktop App Download
+   ═══════════════════════════════════════════════════════════════ */
+
+html.modal-open {
+  overflow: hidden;
+}
+
+.qr-modal {
+  width: min(380px, calc(100vw - 32px));
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 28px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+  overflow: visible;
+}
+
+/* Literal color: older Chrome doesn't pass :root custom properties to ::backdrop */
+.qr-modal::backdrop {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.qr-modal[open] {
+  animation: qr-modal-in var(--transition-bounce);
+}
+
+.qr-modal[open]::backdrop {
+  animation: qr-backdrop-in 0.2s ease;
+}
+
+@keyframes qr-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes qr-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.qr-modal-body {
+  position: relative;
+  padding: 40px 32px 32px;
+  text-align: center;
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.qr-modal-close:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.qr-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.qr-modal-icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-md);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+}
+
+.qr-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
+.qr-modal-desc {
+  margin-top: var(--space-sm);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* White tile so the code scans regardless of surrounding colors */
+.qr-modal-code {
+  width: fit-content;
+  margin: var(--space-lg) auto;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.qr-modal-code img {
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.qr-modal-stores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.qr-modal-stores .btn {
+  min-width: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.qr-modal-stores .btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    UTILITIES & ACCESSIBILITY
    ═══════════════════════════════════════════════════════════════ */
 
 .btn:focus-visible,
 .logo:focus-visible,
 .cta-btn:focus-visible,
+.qr-modal-close:focus-visible,
 .footer-link:focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 3px;
