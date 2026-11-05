@@ -111,6 +111,12 @@
   opacity: 0.6;
 }
 
+/* Long URLs (contact addresses) wrap instead of widening the page on phones */
+.legal-section p,
+.legal-section li {
+  overflow-wrap: anywhere;
+}
+
 /* Strong text */
 .legal-section strong {
   color: var(--color-text);
